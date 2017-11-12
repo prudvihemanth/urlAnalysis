@@ -52,16 +52,23 @@ function getHeadings(body) {
 
 function getlinks(url, body) {
     const $ = cheerio.load(body);
-    const links = [];
+    let links = {};
+    links.internal = 0;
+    links.external = 0;
+    links.unaccessable = [];
+
+
     $("a").each( (i, link) => {
         const href = $(link).attr("href");
         if (href) {
             if (href[0] === '/' || href[0] === '#') {
-                links.push(url + href);
+                links.internal++;
+                links.unaccessable.push(url + href);
             }
             else {
                 if (href !== 'javascript:void(0);' && href !== '#') {
-                    links.push(href);
+                    links.external++;
+                    links.unaccessable.push(href);
                 }
             }
         }
@@ -132,8 +139,12 @@ function urlAnalysis(url) {
                 obj.headings = getHeadings(body);
                 obj.loginFormExists = loginFormExists(body);
                 obj.errorMessage = 'N/A';
-                if (links.length > 0) {
-                    async.each(links, (url, callback) => {
+                obj.errorStatusCode = 'N/A';
+                obj.internallinks = links.internal;
+                obj.externallinks = links.external;
+                
+                if (links.unaccessable.length > 0) {
+                    async.each(links.unaccessable, (url, callback) => {
                         request(url, (error, response, body) => {
                             if (!response || error || response.statusCode === 404) {
                                 unaccessbleLinksCount++;
@@ -160,6 +171,9 @@ function urlAnalysis(url) {
                 obj.headings = 'N/A';
                 obj.unaccessibleLinks = 'N/A';
                 obj.loginFormExists = 'N/A';
+                obj.errorStatusCode = 404;       
+                obj.internallinks = 'N/A';
+                obj.externallinks = 'N/A';         
                 obj.errorMessage = "PAGE NOT FOUND"
                 resolve(obj);
             }
@@ -172,5 +186,6 @@ function urlAnalysis(url) {
     });
 }
 
-
+urlAnalysis('https://www.google.com')
+.then((data) => console.log(data));
 module.exports = urlAnalysis;
