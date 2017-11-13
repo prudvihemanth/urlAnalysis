@@ -165,10 +165,11 @@ function urlAnalysis(url) {
                 }
 
             }
-            else if (!response || error || response.statusCode === 404) {                
+            else if (!response || error || response.statusCode === 404) { 
+                console.log(response);             
                 obj.title = 'N/A';
                 obj.htmlVersion = 'N/A';
-                obj.headings = 'N/A';
+                obj.headings = { h1: 'N/A', h2: 'N/A', h3: 'N/A', h4: 'N/A', h5: 'N/A', h6: 'N/A' };
                 obj.unaccessibleLinks = 'N/A';
                 obj.loginFormExists = 'N/A';
                 obj.errorStatusCode = 404;       
@@ -185,7 +186,4 @@ function urlAnalysis(url) {
         });
     });
 }
-
-urlAnalysis('https://www.google.com')
-.then((data) => console.log(data));
 module.exports = urlAnalysis;
