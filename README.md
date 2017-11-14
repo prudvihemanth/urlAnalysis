@@ -2,14 +2,12 @@
 
 
 Usage:
-
+const urlAnalysis = require('urlanalysis');
 const url = 'https://www.zomato.com/chennai';
-
-urlAnalysis(url)
-
+const analysis = urlAnalysis.analysis;
+analysis(url)
 .then((data) => console.log(data))
-
-.catch((error) => throw error;)
+.catch((error) => console.log(error));
 
 
 We get Title, HtmlVersion, HyperlinksCount, Unaccessible Hyperlinks, Headings, LoginFormExists etc.
