@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive --reporter list",
+    "precommit": "npm test"
   },
   "keywords": [],
   "author": "Guda Pruthvi Hemanth",
@@ -13,5 +14,14 @@
     "async": "^2.6.0",
     "cheerio": "^1.0.0-rc.2",
     "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-mocha": "^4.11.0",
+    "husky": "^0.14.3",
+    "mocha": "^4.0.1"
   }
 }

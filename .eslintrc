@@ -1,0 +1,14 @@
+{
+    "extends": "airbnb-base",
+    "plugins": [
+    "mocha",
+    "chai-friendly"
+  ],
+  "rules": {
+    "mocha/no-exclusive-tests": "error"
+  },
+  "env": {
+  "node": true,
+  "mocha": true
+  }
+}
