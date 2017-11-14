@@ -1,8 +1,9 @@
 {
   "name": "urlanalysis",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "main": "index.js",
+  "url" : "https://github.com/prudvihemanth/urlAnalysis",
   "scripts": {
     "test": "mocha --recursive --reporter list",
     "precommit": "npm test",
