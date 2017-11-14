@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive --reporter list",
-    "precommit": "npm test"
+    "precommit": "npm test",
+    "codeCoverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --recursive"
+    
   },
   "keywords": [],
   "author": "Guda Pruthvi Hemanth",
@@ -22,6 +24,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-mocha": "^4.11.0",
     "husky": "^0.14.3",
+    "istanbul": "^0.4.5",
     "mocha": "^4.0.1"
   }
 }
