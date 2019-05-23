@@ -1,4 +1,14 @@
-# Analyse the SEO friendly webpages
+# Npm Module to analyse the SEO friendly webpages
+
+Tech Stack:
+
+Node.js
+Request
+Cheerio
+
+Mocha
+Chai
+Istanbul
 
 
 Usage:
